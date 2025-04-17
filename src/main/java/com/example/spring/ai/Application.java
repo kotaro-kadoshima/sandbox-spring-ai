@@ -14,7 +14,7 @@ public class Application {
     }
 
     @Bean
-    public ToolCallbackProvider weatherTools(WeatherService weatherService) {
-        return MethodToolCallbackProvider.builder().toolObjects(weatherService).build();
+    public ToolCallbackProvider weatherTools(EsmRemixService esmRemixService) {
+        return MethodToolCallbackProvider.builder().toolObjects(esmRemixService).build();
     }
 }
