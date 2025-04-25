@@ -31,9 +31,9 @@ public class EsmRemixService {
 
     }
 
-    public void searchSchedule(SearchCondition searchCondition) {
+    public void searchSchedule(ReqSearch reqSearch) {
         String endPoint = "/rest/v1/entities/search";
-        ResponseEntity<String> res = restClient.post().uri(endPoint).body(searchCondition).retrieve().toEntity(String.class);
+        ResponseEntity<String> res = restClient.post().uri(endPoint).body(reqSearch).retrieve().toEntity(String.class);
         System.out.println(res);
     }
 }
