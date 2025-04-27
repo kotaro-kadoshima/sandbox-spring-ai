@@ -1,11 +1,14 @@
 package com.example.spring.ai;
 
+import com.example.spring.ai.model.ReqSearch;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-
-import java.util.List;
 
 @Service
 public class EsmRemixService {
@@ -31,9 +34,12 @@ public class EsmRemixService {
 
     }
 
-    public void searchSchedule(ReqSearch reqSearch) {
+    @Tool(description = "eセールスマネージャーのスケジュールを検索")
+    public JsonNode searchSchedule(ReqSearch reqSearch) throws JsonProcessingException {
         String endPoint = "/rest/v1/entities/search";
         ResponseEntity<String> res = restClient.post().uri(endPoint).body(reqSearch).retrieve().toEntity(String.class);
-        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonNode = mapper.readTree(res.getBody());
+        return jsonNode;
     }
 }
