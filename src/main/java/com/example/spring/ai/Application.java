@@ -1,5 +1,9 @@
 package com.example.spring.ai;
 
+import com.example.spring.ai.model.ReqSearch;
+import com.example.spring.ai.model.SearchCondition;
+import com.example.spring.ai.model.SearchConditionItem;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.CommandLineRunner;
@@ -24,7 +28,6 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        remixService.getEntitiesNames();
         // スケジュールの検索処理
         SearchCondition condition = SearchCondition.builder()
                 .targetObjectName("schedule")
@@ -36,7 +39,11 @@ public class Application implements CommandLineRunner {
                 .build();
         ReqSearch reqSearch = ReqSearch.builder().searchCondition(condition).columnCodes(List.of(1301, 1302, 1305)).build();
 
-        remixService.searchSchedule(reqSearch);
+        try {
+            String res = remixService.getCalendar("2025-04-23", "2025-04-29");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Bean

@@ -53,7 +53,7 @@ public class EsmRemixService {
     }
 
     @Tool(description = "Get the calendar events from e-sales")
-    public String getCalendarWithToken(
+    public String getCalendar(
             @ToolParam(description = "Start date for the calendar events yyyy-MM-dd") String start
             , @ToolParam(description = "End date for the calendar events yyyy-MM-dd") String end
     ) throws JsonProcessingException {
