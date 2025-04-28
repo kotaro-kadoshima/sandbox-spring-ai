@@ -1,4 +1,4 @@
-package com.example.spring.ai;
+package com.example.spring.ai.model;
 
 import lombok.Builder;
 import lombok.Data;
