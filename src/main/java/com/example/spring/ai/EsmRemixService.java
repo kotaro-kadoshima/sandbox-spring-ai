@@ -35,21 +35,11 @@ public class EsmRemixService {
                 .build();
     }
 
-    public void getEntitiesNames() {
-        String endPoint = "/rest/v1/entities/names";
-
-        ResponseEntity<String> res = restClient.get().uri(endPoint).retrieve().toEntity(String.class);
-        System.out.println(res);
-
-    }
-
     public JsonNode searchSchedule(ReqSearch reqSearch) throws JsonProcessingException {
         String endPoint = "/rest/v1/entities/search";
         ResponseEntity<String> res = restClient.post().uri(endPoint).body(reqSearch).retrieve().toEntity(String.class);
-//        return res.getBody();
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readTree(res.getBody());
-        return jsonNode;
+        return mapper.readTree(res.getBody());
     }
 
     @Tool(description = "Get the calendar events from e-sales")
