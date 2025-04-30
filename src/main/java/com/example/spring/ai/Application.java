@@ -1,6 +1,5 @@
 package com.example.spring.ai;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +22,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        //　STDIOで通信する場合、余計な出力はしないこと
     }
 
     @Bean
